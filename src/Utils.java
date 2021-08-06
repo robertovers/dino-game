@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Utils {
 
-    protected BufferedImage loadImage(String imgPath) {
+    public static BufferedImage loadImage(String imgPath) {
         try {
             return ImageIO.read(new File(imgPath));
         } catch (IOException exc) {
