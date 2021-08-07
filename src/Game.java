@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 
@@ -8,11 +10,24 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public static final int GAME_HEIGHT = 450;
 
+    public static final int GROUND_HEIGHT = 250;
+
     private boolean running = false;
 
     private Thread thread;
 
+    private enum State {
+        PLAYING,
+        MENU,
+        END
+    }
+
+    private State state = State.MENU;
+
+    private Player player;
+
     public Game() {
+        player = new Player();
     }
 
     public static void main(String[] args) {
@@ -63,11 +78,30 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     private void tick() {
-
+        if (state == State.PLAYING) {
+            player.tick();
+        }
     }
 
     private void render() {
+        BufferStrategy bs = this.getBufferStrategy();
 
+        if (bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+
+        Graphics g = bs.getDrawGraphics();
+
+        g.setColor(Color.white);
+        g.fillRect(0,0, GAME_WIDTH, GAME_HEIGHT);
+        g.setColor(Color.black);
+        g.drawLine(0, GROUND_HEIGHT, GAME_WIDTH, GROUND_HEIGHT);
+
+        player.render(g, this);
+
+        g.dispose();
+        bs.show();
     }
 
     @Override
