@@ -1,3 +1,5 @@
+import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,5 +20,10 @@ public class Obstacle extends GameObject {
     @Override
     public void tick() {
         x += dx;
+    }
+
+    @Override
+    public void render(Graphics g, ImageObserver observer) {
+        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight()*2, sprite.getWidth()*2, sprite.getHeight()*2, observer);
     }
 }
