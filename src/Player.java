@@ -25,7 +25,7 @@ public class Player extends GameObject {
 
     @Override
     public void render(Graphics g, ImageObserver observer) {
-        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight()*2, sprite.getWidth()*2, sprite.getHeight()*2, observer);
+        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight(), sprite.getWidth(), sprite.getHeight(), observer);
     }
 
     public void jumpAction() {

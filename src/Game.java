@@ -26,9 +26,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private Player player;
 
+    private ObstacleHandler obstacleHandler;
+
     public Game() {
 
         player = new Player();
+        obstacleHandler = new ObstacleHandler();
 
         addKeyListener(this);
     }
@@ -83,7 +86,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private void tick() {
         if (state == State.PLAYING) {
             player.tick();
+            obstacleHandler.tick();
         }
+
+        detectCollisions();
     }
 
     private void render() {
@@ -101,10 +107,26 @@ public class Game extends Canvas implements Runnable, KeyListener {
         g.setColor(Color.black);
         g.drawLine(0, GROUND_HEIGHT, GAME_WIDTH, GROUND_HEIGHT);
 
+        obstacleHandler.render(g, this);
         player.render(g, this);
 
         g.dispose();
         bs.show();
+    }
+
+    private void detectCollisions() {
+        for (Obstacle obstacle : obstacleHandler.getObstacles()) {
+            if (player.getHitBox().intersects(obstacle.getHitBox())) {
+                state = State.END;
+                break;
+            }
+        }
+    }
+
+    private void reset() {
+        player = new Player();
+        obstacleHandler.clear();
+        state = State.MENU;
     }
 
     @Override
@@ -113,8 +135,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         if (state == State.MENU  && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
             state = State.PLAYING;
-        } else if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP) {
+        } else if (state == State.PLAYING && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
             player.jumpAction();
+        } else if (state == State.END && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
+            reset();
         }
     }
 
