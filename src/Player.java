@@ -12,6 +12,13 @@ public class Player extends GameObject {
 
     @Override
     public void tick() {
+        if (jumping && y + dy > Game.GROUND_HEIGHT) {
+            y = Game.GROUND_HEIGHT;
+            dy = 0;
+            jumping = false;
+        } else if (jumping) {
+            dy += 0.3f;
+        }
         x += dx;
         y += dy;
     }
@@ -19,5 +26,12 @@ public class Player extends GameObject {
     @Override
     public void render(Graphics g, ImageObserver observer) {
         g.drawImage(sprite, (int) x, (int) y - sprite.getHeight()*2, sprite.getWidth()*2, sprite.getHeight()*2, observer);
+    }
+
+    public void jumpAction() {
+        if (!jumping) {
+            jumping = true;
+            dy = -8;
+        }
     }
 }

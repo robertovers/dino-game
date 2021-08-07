@@ -27,7 +27,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private Player player;
 
     public Game() {
+
         player = new Player();
+
+        addKeyListener(this);
     }
 
     public static void main(String[] args) {
@@ -105,17 +108,21 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
 
+        if (state == State.MENU  && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
+            state = State.PLAYING;
+        } else if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP) {
+            player.jumpAction();
+        }
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
+    public void keyTyped(KeyEvent e) {
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 }
