@@ -28,10 +28,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private ObstacleHandler obstacleHandler;
 
+    private CloudHandler cloudHandler;
+
     public Game() {
 
         player = new Player();
         obstacleHandler = new ObstacleHandler();
+        cloudHandler = new CloudHandler();
 
         addKeyListener(this);
     }
@@ -87,6 +90,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         if (state == State.PLAYING) {
             player.tick();
             obstacleHandler.tick();
+            cloudHandler.tick();
         }
 
         detectCollisions();
@@ -107,6 +111,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         g.setColor(Color.black);
         g.drawLine(0, GROUND_HEIGHT, GAME_WIDTH, GROUND_HEIGHT);
 
+        cloudHandler.render(g, this);
         obstacleHandler.render(g, this);
         player.render(g, this);
 

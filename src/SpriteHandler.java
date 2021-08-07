@@ -2,21 +2,24 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class SpriteHandler {
 
-    public static final BufferedImage standingDino = loadImage("assets/stand.png");
-    public static final BufferedImage deadDino =  loadImage("assets/dead.png");
+    public static final BufferedImage standingDino =
+            loadImage("assets/stand.png");
+
+    public static final BufferedImage deadDino =
+            loadImage("assets/dead.png");
 
     public static final BufferedImage[] obstacleSprites = {
             loadImage("assets/cactus1.png"),
             loadImage("assets/cactus2.png"),
             loadImage("assets/cacti.png")
     };
+
+    public static final BufferedImage cloud =
+            loadImage("assets/cloud.png");
 
     public static BufferedImage loadImage(String imgPath) {
         try {
