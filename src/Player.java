@@ -7,7 +7,7 @@ public class Player extends GameObject {
 
     public Player() {
         super(50, 250);
-        setSpriteFromPath("assets/dino.png");
+        setSpriteFromPath("assets/stand.png");
     }
 
     @Override
