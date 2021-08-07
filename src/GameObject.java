@@ -21,14 +21,14 @@ public abstract class GameObject {
 
     public abstract void render(Graphics g, ImageObserver observer);
 
-    public void setSpriteFromPath(String pathname) {
-        this.sprite = Utils.loadImage(pathname);
-    }
-
     public Rectangle getHitBox() {
         hitBox = new Rectangle(sprite.getWidth(), sprite.getHeight());
         hitBox.setLocation((int) x, (int) y - sprite.getHeight());
         return hitBox;
+    }
+
+    public void setSprite(BufferedImage sprite) {
+        this.sprite = sprite;
     }
 
 }

@@ -1,20 +1,15 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Obstacle extends GameObject {
-   
-    private ArrayList<String> spritePaths = new ArrayList<>();
     
     public Obstacle() {
         super(Game.GAME_WIDTH, 250);
 
-        spritePaths.add("assets/cactus1.png");
-        spritePaths.add("assets/cactus2.png");
-        spritePaths.add("assets/cacti.png");
-
-        setSpriteFromPath(spritePaths.get(new Random().nextInt(spritePaths.size())));
+        sprite = SpriteHandler.getObstacleSprite();
     }
 
     @Override
@@ -29,5 +24,9 @@ public class Obstacle extends GameObject {
 
     public void setDx(float dx) {
         this.dx = dx;
+    }
+
+    public void setSprite(BufferedImage sprite) {
+        this.sprite = sprite;
     }
 }

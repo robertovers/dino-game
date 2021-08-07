@@ -3,11 +3,12 @@ import java.awt.image.ImageObserver;
 
 public class Player extends GameObject {
    
-    private boolean jumping = false;    
+    private boolean jumping = false;
 
     public Player() {
         super(50, 250);
-        setSpriteFromPath("assets/stand.png");
+
+        sprite = SpriteHandler.standingDino;
     }
 
     @Override

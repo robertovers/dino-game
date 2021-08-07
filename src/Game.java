@@ -118,6 +118,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         for (Obstacle obstacle : obstacleHandler.getObstacles()) {
             if (player.getHitBox().intersects(obstacle.getHitBox())) {
                 state = State.END;
+                player.setSprite(SpriteHandler.deadDino);
                 break;
             }
         }
