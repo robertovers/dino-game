@@ -19,9 +19,7 @@ public abstract class GameObject {
 
     public abstract void tick();
 
-    public void render(Graphics g, ImageObserver observer) {
-        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight(), sprite.getWidth(), sprite.getHeight(), observer);
-    }
+    public abstract void render(Graphics g, ImageObserver observer);
 
     public void setSpriteFromPath(String pathname) {
         this.sprite = Utils.loadImage(pathname);
