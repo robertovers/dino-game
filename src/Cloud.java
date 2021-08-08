@@ -7,7 +7,7 @@ public class Cloud extends GameObject {
     public Cloud() {
         super(Game.GAME_WIDTH, (new Random()).nextInt(150)+40);
         sprite = SpriteHandler.cloud;
-        dx = -(new Random()).nextInt(2)-1;
+        dx = -1;
     }
 
     @Override

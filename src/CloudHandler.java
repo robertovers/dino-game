@@ -34,4 +34,8 @@ public class CloudHandler {
             cloud.render(g, observer);
         }
     }
+
+    public void clear() {
+        clouds.clear();
+    }
 }

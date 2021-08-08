@@ -132,6 +132,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private void reset() {
         player = new Player();
         obstacleHandler.clear();
+        cloudHandler.clear();
         state = State.MENU;
     }
 
