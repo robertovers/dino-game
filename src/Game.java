@@ -7,7 +7,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public static final int GAME_WIDTH = 800;
 
-    public static final int GAME_HEIGHT = 450;
+    public static final int GAME_HEIGHT = 400;
 
     public static final int GROUND_HEIGHT = 250;
 
@@ -31,12 +31,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private Score score;
 
+    private ResetButton resetButton;
+
     public Game() {
 
         player = new Player();
         obstacleHandler = new ObstacleHandler();
         cloudHandler = new CloudHandler();
         score = new Score();
+        resetButton = new ResetButton();
 
         addKeyListener(this);
     }
@@ -117,6 +120,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
         obstacleHandler.render(g, this);
         score.render(g);
         player.render(g, this);
+
+        if (state == State.END) {
+            resetButton.render(g, this);
+        }
 
         g.dispose();
         bs.show();

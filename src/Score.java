@@ -10,18 +10,10 @@ public class Score {
 
     private Font font;
 
-    private float fontSize = 12f;
-
-    String fontPath = "assets/font.ttf";
-
     private long lastUpdate;
 
     public Score() {
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(fontSize);
-        } catch (IOException | FontFormatException e) {
-            System.out.println("Font failed to load.");
-        }
+        font = SpriteHandler.loadFont(SpriteHandler.fontPath, 12f);
     }
 
     public void tick() {
