@@ -11,6 +11,8 @@ public class ObstacleHandler {
 
     private float dx = -3;
 
+    private float ddx = -0.001f;
+
     private long lastObst;
 
     public ObstacleHandler() {
@@ -33,6 +35,7 @@ public class ObstacleHandler {
             }
         }
 
+        dx += ddx;
         setSpeed(dx);
     }
 
