@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 
@@ -12,15 +11,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public static final int GROUND_HEIGHT = 250;
 
-    private boolean running = false;
-
-    private Thread thread;
-
     private enum State {
         PLAYING,
         MENU,
         END
     }
+
+    private boolean running = false;
+
+    private Thread thread;
 
     private State state = State.MENU;
 
@@ -30,11 +29,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private CloudHandler cloudHandler;
 
+    private Score score;
+
     public Game() {
 
         player = new Player();
         obstacleHandler = new ObstacleHandler();
         cloudHandler = new CloudHandler();
+        score = new Score();
 
         addKeyListener(this);
     }
@@ -91,8 +93,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
             player.tick();
             obstacleHandler.tick();
             cloudHandler.tick();
+            score.tick();
         }
-
         detectCollisions();
     }
 
@@ -113,6 +115,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         cloudHandler.render(g, this);
         obstacleHandler.render(g, this);
+        score.render(g);
         player.render(g, this);
 
         g.dispose();
@@ -134,6 +137,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         obstacleHandler.clear();
         cloudHandler.clear();
         state = State.MENU;
+        score.clear();
     }
 
     @Override
