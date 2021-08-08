@@ -34,9 +34,9 @@ public class Score {
     public void render(Graphics g) {
         g.setFont(font);
         g.setColor(Color.gray);
-        g.drawString("HI " + hiScore, 600, 50);
+        g.drawString("HI " + pad(hiScore), 590, 50);
         g.setColor(Color.black);
-        g.drawString(String.valueOf(curScore), 700, 50);
+        g.drawString(pad(curScore), 700, 50);
     }
 
     public void clear() {
@@ -44,5 +44,13 @@ public class Score {
             hiScore = curScore;
         }
         curScore = 0;
+    }
+
+    public String pad(int score) {
+        StringBuilder string = new StringBuilder(String.valueOf(score));
+        while (string.length() < 5) {
+            string.insert(0, "0");
+        }
+        return string.toString();
     }
 }
