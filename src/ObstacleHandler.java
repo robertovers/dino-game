@@ -45,10 +45,6 @@ public class ObstacleHandler {
         }
     }
 
-    public void clear() {
-        obstacles.clear();
-    }
-
     private void setSpeed(float dx) {
         for (Obstacle obstacle : obstacles) {
             obstacle.setDx(dx);
