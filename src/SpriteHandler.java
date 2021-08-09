@@ -21,7 +21,7 @@ public class SpriteHandler {
     public static final BufferedImage[] obstacleSprites = {
             loadImage("assets/cactus1.png"),
             loadImage("assets/cactus2.png"),
-            loadImage("assets/cacti.png")
+            loadImage("assets/cactus3.png")
     };
 
     public static final BufferedImage cloud =
