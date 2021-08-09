@@ -13,15 +13,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     private enum State {
         PLAYING,
-        MENU,
-        END
+        NOT_PLAYING,
+        GAME_OVER
     }
 
     private boolean running = false;
 
     private Thread thread;
 
-    private State state = State.MENU;
+    private State state = State.NOT_PLAYING;
 
     private Player player;
 
@@ -121,7 +121,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         score.render(g);
         player.render(g, this);
 
-        if (state == State.END) {
+        if (state == State.GAME_OVER) {
             resetButton.render(g, this);
         }
 
@@ -132,7 +132,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private void detectCollisions() {
         for (Obstacle obstacle : obstacleHandler.getObstacles()) {
             if (player.getHitBox().intersects(obstacle.getHitBox())) {
-                state = State.END;
+                state = State.GAME_OVER;
                 player.setSprite(SpriteHandler.deadDino);
                 break;
             }
@@ -143,7 +143,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         player = new Player();
         obstacleHandler = new ObstacleHandler();
         cloudHandler = new CloudHandler();
-        state = State.MENU;
+        state = State.NOT_PLAYING;
         score.clear();
     }
 
@@ -151,11 +151,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (state == State.MENU  && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
+        if (state == State.NOT_PLAYING && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
             state = State.PLAYING;
         } else if (state == State.PLAYING && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
             player.jumpAction();
-        } else if (state == State.END && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
+        } else if (state == State.GAME_OVER && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_UP)) {
             reset();
         }
     }
