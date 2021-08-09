@@ -29,7 +29,7 @@ public class ObstacleHandler {
         for (Obstacle obstacle : obstacles) {
             obstacle.tick();
 
-            if (obstacle.getHitBox().x < -50) {
+            if (obstacle.getHitBox().x < -100) {
                 obstacles.remove(obstacle);
                 break;
             }
