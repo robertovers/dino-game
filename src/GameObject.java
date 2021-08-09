@@ -10,8 +10,6 @@ public abstract class GameObject {
 
     protected BufferedImage sprite;
 
-    protected Rectangle hitBox;
-
     public GameObject(float x, float y) {
         this.x = x;
         this.y = y;
@@ -22,7 +20,7 @@ public abstract class GameObject {
     public abstract void render(Graphics g, ImageObserver observer);
 
     public Rectangle getHitBox() {
-        hitBox = new Rectangle(sprite.getWidth(), sprite.getHeight());
+        Rectangle hitBox = new Rectangle(sprite.getWidth(), sprite.getHeight());
         hitBox.setLocation((int) x, (int) y - sprite.getHeight());
         return hitBox;
     }
