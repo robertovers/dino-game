@@ -18,7 +18,7 @@ public class Player extends GameObject {
             dy = 0;
             jumping = false;
         } else if (jumping) {
-            dy += 0.3f;
+            dy += 0.25f;
         }
         x += dx;
         y += dy;
@@ -32,7 +32,7 @@ public class Player extends GameObject {
     public void jumpAction() {
         if (!jumping) {
             jumping = true;
-            dy = -8;
+            dy = -7;
         }
     }
 }

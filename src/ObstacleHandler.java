@@ -21,7 +21,7 @@ public class ObstacleHandler {
     public void tick() {
         double rand = random.nextDouble();
 
-        if (rand < 0.01 && System.currentTimeMillis() - lastObst > 500) {
+        if (rand < 0.01 && System.currentTimeMillis() - lastObst > 700) {
             obstacles.add(new Obstacle());
             lastObst = System.currentTimeMillis();
         }
