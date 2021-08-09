@@ -19,7 +19,7 @@ public class ResetButton extends GameObject {
 
     @Override
     public void render(Graphics g, ImageObserver observer) {
-        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight(), sprite.getWidth(), sprite.getHeight(), observer);
+        g.drawImage(sprite, (int) x, (int) y - sprite.getHeight(), observer);
         g.setFont(font);
         g.drawString("GAME OVER", 340, 170);
     }
