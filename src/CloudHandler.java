@@ -22,7 +22,7 @@ public class CloudHandler {
         for (Cloud cloud : clouds) {
             cloud.tick();
 
-            if (cloud.getHitBox().x < -50) {
+            if (cloud.x < -50) {
                 clouds.remove(cloud);
                 break;
             }
