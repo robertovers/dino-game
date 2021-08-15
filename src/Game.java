@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     public static void main(String[] args) {
-        new Window(GAME_WIDTH, GAME_HEIGHT, "Dino Game", new Game());
+        new GameWindow(GAME_WIDTH, GAME_HEIGHT, "Dino Game", new Game());
     }
 
     public synchronized void start() {

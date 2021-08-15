@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Window {
+public class GameWindow {
 
-    public Window(int w, int h, String title, Game game) {
+    public GameWindow(int w, int h, String title, Game game) {
         game.setPreferredSize(new Dimension(w, h));
 
         JFrame frame = new JFrame(title);
