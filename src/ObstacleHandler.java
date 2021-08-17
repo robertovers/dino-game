@@ -26,7 +26,10 @@ public class ObstacleHandler {
             lastObst = System.currentTimeMillis();
         }
 
+        dx += ddx;
+
         for (Obstacle obstacle : obstacles) {
+            obstacle.dx = dx;
             obstacle.tick();
 
             if (obstacle.x < -100) {
@@ -34,20 +37,11 @@ public class ObstacleHandler {
                 break;
             }
         }
-
-        dx += ddx;
-        setSpeed(dx);
     }
 
     public void render(Graphics g, ImageObserver observer) {
         for (Obstacle obstacle : obstacles) {
             obstacle.render(g, observer);
-        }
-    }
-
-    private void setSpeed(float dx) {
-        for (Obstacle obstacle : obstacles) {
-            obstacle.setDx(dx);
         }
     }
 
