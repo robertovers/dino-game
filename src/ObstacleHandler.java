@@ -6,17 +6,11 @@ import java.util.Random;
 public class ObstacleHandler {
 
     private ArrayList<Obstacle> obstacles = new ArrayList<>();
-
     private Random random = new Random();
 
     private float dx = -3;
-
     private float ddx = -0.001f;
-
     private long lastObst;
-
-    public ObstacleHandler() {
-    }
 
     public void tick() {
         double rand = random.nextDouble();
@@ -25,8 +19,6 @@ public class ObstacleHandler {
             obstacles.add(new Obstacle());
             lastObst = System.currentTimeMillis();
         }
-
-        dx += ddx;
 
         for (Obstacle obstacle : obstacles) {
             obstacle.dx = dx;
@@ -37,6 +29,7 @@ public class ObstacleHandler {
                 break;
             }
         }
+        dx += ddx;
     }
 
     public void render(Graphics g, ImageObserver observer) {
